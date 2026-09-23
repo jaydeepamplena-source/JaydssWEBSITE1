@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Productivity Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span>✓</span> TaskFlow
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#tasks">Tasks</a>
+            <a href="#progress">Progress</a>
+        </div>
+
+        <button id="themeBtn" class="theme-btn">🌙</button>
+    </nav>
+
+    <main>
+
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="hero-text">
+                <p class="small-title">YOUR DAILY PRODUCTIVITY</p>
+
+                <h1>
+                    Get things done.<br>
+                    <span>Stay focused.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Organize your tasks, track your progress, and make
+                    every day more productive with TaskFlow.
+                </p>
+
+                <button class="primary-btn" onclick="scrollToTasks()">
+                    Start Planning →
+                </button>
+            </div>
+
+            <div class="hero-card">
+                <div class="circle-progress">
+                    <div>
+                        <strong id="heroPercent">68%</strong>
+                        <small>Complete</small>
+                    </div>
+                </div>
+
+                <h3>Today's Progress</h3>
+                <p>You're doing great! Keep going.</p>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="stats">
+            <div class="stat-card">
+                <span>📋</span>
+                <div>
+                    <h2 id="totalTasks">4</h2>
+                    <p>Total Tasks</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span>✅</span>
+                <div>
+                    <h2 id="completedTasks">2</h2>
+                    <p>Completed</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span>⏳</span>
+                <div>
+                    <h2 id="pendingTasks">2</h2>
+                    <p>Pending</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span>🔥</span>
+                <div>
+                    <h2>7</h2>
+                    <p>Day Streak</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TASKS -->
+        <section id="tasks" class="tasks-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="small-title">MY WORKSPACE</p>
+                    <h2>Today's Tasks</h2>
+                </div>
+
+                <button class="add-btn" onclick="openModal()">
+                    + Add Task
+                </button>
+            </div>
+
+            <div id="taskList" class="task-list">
+
+                <div class="task completed">
+                    <button class="check-btn" onclick="toggleTask(this)">✓</button>
+
+                    <div class="task-info">
+                        <h3>Finish Web Design</h3>
+                        <p>Complete the homepage layout</p>
+                    </div>
+
+                    <span class="tag design">Design</span>
+                </div>
+
+                <div class="task completed">
+                    <button class="check-btn" onclick="toggleTask(this)">✓</button>
+
+                    <div class="task-info">
+                        <h3>Read Lecture Notes</h3>
+                        <p>Review Chapter 4 and Chapter 5</p>
+                    </div>
+
+                    <span class="tag study">Study</span>
+                </div>
+
+                <div class="task">
+                    <button class="check-btn" onclick="toggleTask(this)">✓</button>
+
+                    <div class="task-info">
+                        <h3>Database Assignment</h3>
+                        <p>Complete SQL exercises</p>
+                    </div>
+
+                    <span class="tag school">School</span>
+                </div>
+
+                <div class="task">
+                    <button class="check-btn" onclick="toggleTask(this)">✓</button>
+
+                    <div class="task-info">
+                        <h3>Practice Coding</h3>
+                        <p>Build a small JavaScript project</p>
+                    </div>
+
+                    <span class="tag coding">Coding</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROGRESS -->
+        <section id="progress" class="progress-section">
+
+            <div class="progress-header">
+                <div>
+                    <p class="small-title">PERFORMANCE</p>
+                    <h2>Weekly Progress</h2>
+                </div>
+
+                <span class="week-label">This Week</span>
+            </div>
+
+            <div class="chart">
+                <div class="bar-container">
+                    <div class="bar" style="height:45%"></div>
+                    <span>Mon</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:65%"></div>
+                    <span>Tue</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:80%"></div>
+                    <span>Wed</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar active" style="height:95%"></div>
+                    <span>Thu</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:60%"></div>
+                    <span>Fri</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:35%"></div>
+                    <span>Sat</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:50%"></div>
+                    <span>Sun</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>TaskFlow</h3>
+        <p>Plan better. Work smarter. Achieve more.</p>
+        <small>© 2026 TaskFlow</small>
+    </footer>
+
+
+    <!-- ADD TASK MODAL -->
+    <div id="modal" class="modal">
+
+        <div class="modal-content">
+
+            <button class="close-btn" onclick="closeModal()">×</button>
+
+            <h2>Add New Task</h2>
+            <p>Create a new task for today.</p>
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter task name..."
+            >
+
+            <input
+                type="text"
+                id="descriptionInput"
+                placeholder="Description..."
+            >
+
+            <select id="categoryInput">
+                <option value="school">School</option>
+                <option value="design">Design</option>
+                <option value="coding">Coding</option>
+                <option value="study">Study</option>
+            </select>
+
+            <button class="save-btn" onclick="addTask()">
+                Add Task
+            </button>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
